@@ -5,6 +5,22 @@
   
 <mapper namespace="com.iu.s5.notice.NoticeDAO">
 	
+	<!-- 전체 글의 갯수  -->
+	<select id="boardCount" resultType="java.lang.Long">
+		select count(num) from notice
+	</select>
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="com.iu.s5.notice.NoticeVO">
+		select * from 
+		(select N.*, rownum R from 
+		(select * from notice order by num desc) N)
+		where r between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="boardSelect" parameterType="java.lang.Long" resultType="com.iu.s5.notice.NoticeVO">
+		select * from notice where num = #{num}
+	</select>
+	
 	<insert id="boardWrite" parameterType="com.iu.s5.notice.NoticeVO">
 		insert into notice values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
 	</insert>
@@ -17,8 +33,8 @@
 		update notice set title=#{title}, contents=#{contents} where num = #{num}
 	</update>
 	
-	<update id="hitUpdate" parameterType="com.iu.s5.notice.NoticeVO">
-		update notice set hit=#{hit} where num=#{num}
+	<update id="hitUpdate" parameterType="java.lang.Long">
+		update notice set hit = hit+1 where num=#{num}
 	</update>
 
 </mapper>
