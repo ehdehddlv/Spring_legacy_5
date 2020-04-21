@@ -5,46 +5,57 @@
   
 <mapper namespace="com.iu.s5.member.MemberDAO">
 	
-	<select id="memberCount" parameterType="com.iu.s5.member.page.Pager" resultType="java.lang.Long">
-		select count(id) from member
-		<where>
-			<if test="mkind == 'mi'">
-				id like '%'||#{msearch}||'%'
-			</if>
-			<if test="mkind == 'mn'">
-				name like '%'||#{msearch}||'%'
-			</if>
-			<if test="mkind == 'mp'">
-				phone like '%'||#{msearch}||'%'
-			</if>
-			<if test="mkind == 'me'">
-				email like '%'||#{msearch}||'%'
-			</if>
-		</where>
-	</select>
+	<sql id="search">
+		like '%'||#{search}||'%'
+	</sql>
 	
-	
-	<select id="memberList" parameterType="com.iu.s5.member.page.Pager" resultType="com.iu.s5.member.MemberVO">
-		select * from 
-		(select N.*, rownum R from 
-		(select * from member
+	<sql id="kind">
 		<choose>
-			<when test="mkind == 'mi'">
-				id 
+			<when test="kind=='mi'">
+				id
 			</when>
-			<when test="mkind == 'mn'">
+			<when test="kind=='mn'">
 				name
 			</when>
-			<when test="mkind == 'mp'">
-				phone
+			<when test="kind=='me'">
+				email
 			</when>
 			<otherwise>
-				email
+				phone
 			</otherwise>
 		</choose>
-		like '%'||#{msearch}||'%' ) N)
-		where r between #{startRow} and #{lastRow}
+	</sql>
 	
+	<select id="memberCount" resultType="Long" parameterType="Pager">
+		select count(id) from member where 
+		<include refid="kind"></include>
+		<include refid="search"></include>
 	</select>
+	
+	<select id="memberList" resultType="MemberVO" parameterType="Pager">
+		select * from
+		(select M.*, rownum R from
+		(select * from member where 
+		<include refid="kind"></include>
+		<include refid="search"></include>) M)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
+		select * from member where id=#{id} and password=#{password}
+	</select>
+	
+	<insert id="memberJoin" parameterType="MemberVO">
+		insert into member values(#{id}, #{password}, #{name}, #{email}, #{phone}, #{age})
+	</insert>
+	
+	<update id="memberUpdate" parameterType="MemberVO">
+		update member set name=#{name}, email=#{email}, phone=#{phone}, age=#{age} where id=#{id}
+	</update>
+	
+	<delete id="memberDelete" parameterType="MemberVO">
+		delete member where id=#{id}
+	</delete>
 
-</mapper>
+
+</mapper>  

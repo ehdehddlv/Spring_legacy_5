@@ -20,14 +20,14 @@
 			 <form class="col-xs-6" action="./memberList">
 			    <div class="input-group">
 			    
-			    <select class="form-control" id="sel1" name="mkind">
+			    <select class="form-control" id="sel1" name="kind">
 				    <option value="mi">ID</option>
 				    <option value="mn">Name</option>
 				    <option value="mp">Phone</option>
 				    <option value="me">Email</option>
 				</select>
 			    
-			      <input type="text" class="form-control" placeholder="Search" name="msearch">
+			      <input type="text" class="form-control" placeholder="Search" name="search">
 			      <div class="input-group-btn">
 			        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			      </div>
@@ -41,7 +41,7 @@
 					<td>PHONE</td>
 					<td>EMAIL</td>
 				</tr>
-				<c:forEach items="${mlist}" var="vo">
+				<c:forEach items="${list}" var="vo">
 					<tr>
 						<td>${vo.id}</td>
 						<td>${vo.name}</td>

@@ -1,4 +1,4 @@
-package com.iu.s5.notice;
+package com.iu.s5.qna;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,41 +12,44 @@ import com.iu.s5.board.BoardVO;
 import com.iu.s5.util.Pager;
 
 @Service
-public class NoticeService implements BoardService {
-	
+public class QnaService implements BoardService{
+
 	@Autowired
-	private NoticeDAO noticeDAO;
-
-	@Override
-	public List<BoardVO> boardList(Pager pager) throws Exception {
-		
-		pager.makeRow();
-		
-		long totalCount = noticeDAO.boardCount(pager);
-		pager.makePage(totalCount);
-		
-		return noticeDAO.boardList(pager);
+	private QnaDAO qnaDAO;
+	
+	public int boardReply(BoardVO boardVO) throws Exception{
+		int result = qnaDAO.boardReplyUpdate(boardVO);
+		result = qnaDAO.boardReply(boardVO);
+		return result;
 	}
-
+	
+	@Override
+	public List<BoardVO> boardList(Pager pager) throws Exception {		
+		pager.makeRow();
+		pager.makePage(qnaDAO.boardCount(pager));
+		
+		return qnaDAO.boardList(pager);
+	}
+	
 	@Override
 	public BoardVO boardSelect(long num) throws Exception {
-		noticeDAO.hitUpdate(num);
-		return noticeDAO.boardSelect(num);
+		//qnaDAO.hitUpdate(num);
+		return qnaDAO.boardSelect(num);
 	}
-
+	
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		return noticeDAO.boardWrite(boardVO);
+		return qnaDAO.boardWrite(boardVO);
 	}
-
+	
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		return noticeDAO.boardUpdate(boardVO);
+		return qnaDAO.boardUpdate(boardVO);
 	}
-
+	
 	@Override
 	public int boardDelete(long num) throws Exception {
-		return noticeDAO.boardDelete(num);
+		return qnaDAO.boardDelete(num);
 	}
-
+	
 }
