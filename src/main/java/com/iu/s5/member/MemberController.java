@@ -47,7 +47,7 @@ public class MemberController {
 	
 	@RequestMapping(value= "memberJoin", method = RequestMethod.POST)
 	public ModelAndView memberJoin(MemberVO memberVO, String avatar, ModelAndView mv) throws Exception {
-		System.out.println("avatar : "+avatar);
+		
 		int result = memberService.memberJoin(memberVO);
 		String msg ="Member Join Fail";
 		if(result>0) {

@@ -33,7 +33,7 @@ public class QnaService implements BoardService{
 	
 	@Override
 	public BoardVO boardSelect(long num) throws Exception {
-		//qnaDAO.hitUpdate(num);
+		qnaDAO.hitUpdate(num);
 		return qnaDAO.boardSelect(num);
 	}
 	

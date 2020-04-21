@@ -64,12 +64,9 @@
 	</insert>
 	
 	
-	
-	
-	
-	
-	
-	
+	<update id="hitUpdate" parameterType="Long">
+		update qna set hit = hit+1 where num = #{num}
+	</update>
 	
 	
 	
@@ -105,9 +102,7 @@
 		delete qna where num = #{num}
 	</delete>
 	
-	<update id="hitUpdate" parameterType="Long">
-		update qna set hit = hit+1 where num = #{num}
-	</update> -->
+	 -->
 	
 	<!-- qna -->
 
