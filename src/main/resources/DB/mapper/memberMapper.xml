@@ -5,6 +5,21 @@
   
 <mapper namespace="com.iu.s5.member.MemberDAO">
 	
+	<resultMap type="MemberVO" id="loginResult">
+		<id column="id" property="id"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="age" property="age"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<!-- 1개인 경우 1:1 관계  -->
+		<association property="memberFileVO" javaType="MemberFileVO">
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+		
+	</resultMap>
+	
 	<sql id="search">
 		like '%'||#{search}||'%'
 	</sql>
@@ -41,8 +56,11 @@
 		where R between #{startRow} and #{lastRow}
 	</select>
 	
-	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
-		select * from member where id=#{id} and password=#{password}
+	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO" resultMap="loginResult">
+		select M.*, F.fileName, F.oriName
+		from member M left join memberFile F
+		on (M.id = F.id)
+		where M.id = #{id} and M.password = #{password}
 	</select>
 	
 	<insert id="memberJoin" parameterType="MemberVO">

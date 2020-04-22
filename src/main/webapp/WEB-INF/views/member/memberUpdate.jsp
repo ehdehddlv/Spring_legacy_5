@@ -56,7 +56,7 @@
 					<div class="col-sm-10">
 						<input type="file" class="form-control" id="avatar" value="" name="avatar">
 					</div>
-				</div>			
+				</div>		
 						
 				
 				<div class="form-group">
