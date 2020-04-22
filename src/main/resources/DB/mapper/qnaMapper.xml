@@ -75,27 +75,10 @@
 
 	<!-- qna -->
 	
-	<!-- <select id="boardQCount" resultType="Long">
-		select count(num) from qna
-	</select>
-	
-	<select id="qnaList" parameterType="java.util.Map" resultType="QnaVO">
-		select * from 
-		(select N.*, rownum R from 
-		(select * from qna order by num desc) N)
-		where r between #{startRow} and #{lastRow}
-	</select>
-	
-	<select id="qnaSelect" parameterType="Long" resultType="com.iu.s5.qna.QnaVO">
-		select * from qna where num = #{num}
-	</select>
-	
-	<insert id="qnaWrite" parameterType="com.iu.s5.qna.QnaVO">
-		insert into qna values(board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,0,0,0)
-	</insert>
+	<!-- 
 	
 	<update id="qnaUpdate" parameterType="com.iu.s5.qna.QnaVO">
-		update qna set title=#{title}, contents=#{contents}, ref=#{ref}, step=#{step}, depth=#{depth} where num = #{num}
+		update qna set title=#{title}, writer=#{writer}, contents=#{contents} where num = #{num}
 	</update>
 	
 	<delete id="qnaDelete" parameterType="Long">

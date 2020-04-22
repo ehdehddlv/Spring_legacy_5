@@ -28,11 +28,11 @@ public class NoticeController {
 	
 	@RequestMapping(value = "noticeList")
 	public ModelAndView boardList(Pager pager, ModelAndView mv) throws Exception{
-		System.out.println("kind : "+pager.getKind());
-		System.out.println("search : "+pager.getSearch());
+		//System.out.println("kind : "+pager.getKind());
+		//System.out.println("search : "+pager.getSearch());
 		
 		List<BoardVO> ar = noticeService.boardList(pager);
-		System.out.println(pager.getTotalPage());
+		//System.out.println(pager.getTotalPage());
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/boardList");

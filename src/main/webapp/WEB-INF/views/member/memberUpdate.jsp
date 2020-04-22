@@ -49,7 +49,14 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="age" value="${member.age}" placeholder="Enter Age" name="age">
 					</div>
-				</div>				
+				</div>	
+				
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="avatar">Avatar:</label>
+					<div class="col-sm-10">
+						<input type="file" class="form-control" id="avatar" value="" name="avatar">
+					</div>
+				</div>			
 						
 				
 				<div class="form-group">

@@ -37,25 +37,26 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="email">Email:</label>
+					<label class="control-label col-sm-2" for="age">Age:</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+						<input type="text" class="form-control" id="age" placeholder="Enter Age" name="age">
 					</div>
-				</div>				
+				</div>
 				
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="phone">Phone:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="phone" placeholder="Enter Phone" name="phone">
 					</div>
-				</div>		
+				</div>	
 				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="age">Age:</label>
+					<label class="control-label col-sm-2" for="email">Email:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="age" placeholder="Enter Age" name="age">
+						<input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
 					</div>
-				</div>		
+				</div>				
+				
 				
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="pic">Avatar:</label>

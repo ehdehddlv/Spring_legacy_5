@@ -46,7 +46,7 @@
 	</select>
 	
 	<insert id="memberJoin" parameterType="MemberVO">
-		insert into member values(#{id}, #{password}, #{name}, #{email}, #{phone}, #{age})
+		insert into member values(#{id}, #{password}, #{name}, #{age}, #{phone}, #{email})
 	</insert>
 	
 	<update id="memberUpdate" parameterType="MemberVO">
