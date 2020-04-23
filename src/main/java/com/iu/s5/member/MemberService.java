@@ -67,9 +67,9 @@ public class MemberService {
 	
 	//memberFile
 	
-	public MemberFileVO fileSelect(String id) throws Exception{
-		return memberFileDAO.fileSelect(id);
-	}
+//	public MemberFileVO fileSelect(String id) throws Exception{
+//		return memberFileDAO.fileSelect(id);
+//	}
 
 	public int fileDelete(String id, HttpSession session) throws Exception{
 		MemberFileVO memberFileVO = memberFileDAO.fileSelect(id);
