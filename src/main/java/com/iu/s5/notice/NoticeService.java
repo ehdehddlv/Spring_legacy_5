@@ -50,7 +50,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public int boardWrite(BoardVO boardVO, MultipartFile [] files) throws Exception {
 		
-		String path = servletContext.getRealPath("/resources/uploadNotice");
+		String path = servletContext.getRealPath("/resources/uploadnotice");
 		System.out.println(path);
 		
 		//sequence 번호 받기

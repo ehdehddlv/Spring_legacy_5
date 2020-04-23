@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
+<c:import url="../template/summer.jsp"></c:import>
 </head>
 <body>
 
@@ -33,12 +34,12 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="contents">Contents:</label>
 					<div class="col-sm-10">
-						<textarea rows="5" cols="" class="form-control" id="contents" name="contents"></textarea>
+						<textarea rows="20" cols="" class="form-control" id="contents" name="contents"></textarea>
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="files">File:</label>
+					<label for="files">File:</label>
 					<input type="file" class="form-control" name="files">
 					<input type="file" class="form-control" name="files">
 				</div>
@@ -53,6 +54,13 @@
 
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		// $("선택자").action();
+		$("#contents").summernote({
+			height : 400
+		});
+	</script>
 
 </body>
 </html>

@@ -16,4 +16,9 @@ public class BoardFileDAO {
 		return sqlSession.insert(NAMESPACE+"fileInsert", boardFileVO);
 	}
 	
+	//fileSelect
+	public BoardFileVO fileSelect(BoardFileVO boardFileVO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"fileSelect", boardFileVO);
+	}
+	
 }
