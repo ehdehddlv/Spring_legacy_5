@@ -23,6 +23,9 @@ public class MemberService {
 	@Autowired
 	private MemberFileDAO memberFileDAO;
 	
+	public MemberVO memberIdCheck(MemberVO memberVO) throws Exception{
+		return memberDAO.memberIdCheck(memberVO);
+	}
 	
 	public List<MemberVO> memberList(Pager memberPager)throws Exception{
 		memberPager.makeRow();

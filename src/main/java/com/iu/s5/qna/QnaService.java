@@ -26,7 +26,7 @@ public class QnaService implements BoardService{
 	private FileSaver fileSaver;
 	@Autowired
 	private BoardFileDAO boardFileDAO;
-	@Autowired
+	//@Autowired
 	private ServletContext servletContext;
 	
 	public int boardReply(BoardVO boardVO) throws Exception{

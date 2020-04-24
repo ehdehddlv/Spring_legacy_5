@@ -15,6 +15,7 @@
   		<typeAlias type="com.iu.s5.member.MemberVO" alias="MemberVO"/>
   		<typeAlias type="com.iu.s5.member.memberFile.MemberFileVO" alias="MemberFileVO"/>
   		<typeAlias type="com.iu.s5.board.file.BoardFileVO" alias="BoardFileVO"/>
+  		<typeAlias type="com.iu.s5.memo.MemoVO" alias="MemoVO"/>
   		
   		<typeAlias type="com.iu.s5.util.Pager" alias="Pager"/>
   		

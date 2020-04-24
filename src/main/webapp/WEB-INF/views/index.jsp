@@ -16,5 +16,18 @@
 
 	<h1>Add Point Branch</h1>
 	<% config.getInitParameter(""); %>
+	<button id="btn">BUTTON</button>
+	<script type="text/javascript">
+		$("#btn").click(function() {
+			//jquery ajax
+			//GET
+			alert("start");
+			$.get("./notice/noticeSelect?num=30", function(result) {
+				console.log(result);
+			});
+			alert("finish");
+			
+		});
+	</script>
 </body>
 </html>

@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="row">
 		<h1>${board} Write</h1>
-			<form class="form-horizontal" action="./${board}Write" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" id="frm" action="./${board}Write" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">Title:</label>
 					<div class="col-sm-10">
@@ -27,7 +27,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="writer">Writer:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="writer" placeholder="Enter Writer" name="writer">
+						<input type="text" class="form-control" id="writer" value="${member.id}" readonly="readonly" name="writer">
 					</div>
 				</div>
 				
@@ -38,16 +38,23 @@
 					</div>
 				</div>
 				
+				
 				<div class="form-group">
-					<label for="files">File:</label>
-					<input type="file" class="form-control" name="files">
-					<input type="file" class="form-control" name="files">
+					<div class="control-label col-sm-2">
+						<input type="button" id="add" class="btn btn-info" value="Add File">
+						<label class="control-label col-sm-2" for="file">File:</label>
+					</div>
+				</div>	
+				
+				<div id="file">
+					
 				</div>
+				
 				
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Write</button>
+						<button type="button" id="btn" class="btn btn-default">Write</button>
 					</div>
 				</div>
 			</form>
@@ -55,11 +62,8 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript">
-		// $("선택자").action();
-		$("#contents").summernote({
-			height : 400
-		});
+	<script type="text/javascript" src="../resources/js/boardForm.js">
+		
 	</script>
 
 </body>

@@ -38,11 +38,12 @@
     </div> 
        
    
-    <button type="submit" class="btn btn-default">Update</button>
+    <button type="submit" id="btn" class="btn btn-default">Update</button>
     
   </form>
 	</div>
 </div>
+
 
 <script type="text/javascript">
 	$("#contents").summernote({
