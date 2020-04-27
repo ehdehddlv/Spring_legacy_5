@@ -11,6 +11,12 @@ public class BoardFileDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.s5.board.file.BoardFileDAO.";
 	
+	//fileDelete
+	public int fileDelete(long fileNum) throws Exception{
+		return sqlSession.delete(NAMESPACE+"fileDelete", fileNum);
+	}
+	
+	
 	//fileInsert
 	public int fileInsert(BoardFileVO boardFileVO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"fileInsert", boardFileVO);

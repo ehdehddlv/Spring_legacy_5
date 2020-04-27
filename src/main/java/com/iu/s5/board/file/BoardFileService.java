@@ -9,6 +9,11 @@ public class BoardFileService {
 	@Autowired
 	private BoardFileDAO boardFileDAO;
 	
+	public int fileDelete(long fileNum) throws Exception{
+		return boardFileDAO.fileDelete(fileNum);
+	}
+	
+	
 	public BoardFileVO fileSelect(BoardFileVO boardFileVO) throws Exception{
 		return boardFileDAO.fileSelect(boardFileVO);
 	}

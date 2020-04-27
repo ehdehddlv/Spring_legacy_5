@@ -51,10 +51,12 @@
 					</div>
 				</div>	
 				
+				<h1>${member.memberFileVO.oriName}</h1>
+				
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="avatar">Avatar:</label>
 					<div class="col-sm-10">
-						<input type="file" class="form-control" id="avatar" value="" name="avatar">
+						<input type="file" class="form-control" id="avatar" name="avatar">
 					</div>
 				</div>		
 						

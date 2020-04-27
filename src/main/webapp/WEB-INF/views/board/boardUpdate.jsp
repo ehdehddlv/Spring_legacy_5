@@ -36,6 +36,15 @@
       <label for="Contents">Contents:</label>
       <textarea rows="5" cols="" class="form-control" id="contents" name="contents">${vo.contents}</textarea>
     </div> 
+    
+    <div class="form-group">
+    	<label for="files">Files:</label>
+    	<c:forEach items="${vo.boardFileVOs}" var="fileVO">
+    		<p>${fileVO.oriName}<i id="${fileVO.fileNum}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+    	
+    	</c:forEach>
+    	
+    </div>
        
    
     <button type="submit" id="btn" class="btn btn-default">Update</button>
@@ -48,6 +57,20 @@
 <script type="text/javascript">
 	$("#contents").summernote({
 		height : 400
+	});
+	
+	$(".fileDelete").click(function() {
+		
+		var s = $(this);
+		
+		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id")}, function(data) {
+			
+			if(data.trim()>0){
+				s.parent().remove(); 
+			}else {
+				alert("File Delete Fail");
+			}
+		});
 	});
 </script>
 

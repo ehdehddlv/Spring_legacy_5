@@ -81,9 +81,25 @@
 	$("#id").blur(function() {
 		var id = $("#id").val();
 		//URL, {파라미터}
-		$.post("./memberIdCheck", {id:id}, function(data) {
+		/* $.post("./memberIdCheck", {id:id}, function(data) {
 			alert(data);
-		});
+		}); */
+		
+		$.ajax({
+			type : "post", 	//method 형식
+			url : "./memberIdCheck", 	//URL 주소
+			data : {
+				id: id
+			}, 		//parameter
+			success : function(data) {
+				alert(data);
+			},
+			error : function() {
+				alert("error 발생");
+			}
+			
+		});	
+		
 	});
 </script>
 

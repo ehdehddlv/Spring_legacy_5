@@ -7,6 +7,65 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/boot.jsp"></c:import>
+<script type="text/javascript">
+	$(function() {
+		//전체 체크
+		$("#result").on("click", "#chAll", function() {
+			$(".ch").prop("checked", $(this).prop("checked"));
+			
+		});
+		
+		
+		//체크 한거 안한거 확인
+		$("#result").on("click", ".ch", function() {
+			var result = true;
+			$(".ch").each(function() {
+				if(!$(this).prop("checked")){
+					result = false;
+				}
+			});
+			
+			$("#chAll").prop("checked", result);
+			
+		});
+		
+		
+		//지우기
+		$("#result").on("click", "#del", function() {
+			var ids = [];	//빈 배열 생성
+			$(".ch").each(function() {
+				if($(this).prop("checked")){
+					//방법1
+					//var id = $(this).attr("title");
+					//alert($("#"+id).text());
+					//방법2
+					//alert($(this).attr("id"));
+					
+					ids.push($(this).attr("id"));
+				}	
+			});
+			
+			console.log(ids);
+			//foreach 끝
+			$.ajax({
+				type:"get",
+				traditional : true,
+				url:"./memberDeletes",
+				data:{
+					ids:ids
+				},
+				success:function(data){
+					$.get("./memberLists", function(data) {
+						$("#result").html(data.trim());
+					});
+				}
+			});
+			
+		});
+		
+		
+	});//전체 end
+</script>
 </head>
 <body>
 
@@ -34,19 +93,23 @@
 			    </div>
 		  	</form>
 			
+			<div id="result">
+			
 			<table class="table table-hover">
 				<tr>
 					<td>ID</td>
 					<td>NAME</td>
 					<td>PHONE</td>
 					<td>EMAIL</td>
+					<td><input type="checkbox" id="chAll"><button id="del" class="btn btn-danger">Delete</button> </td>
 				</tr>
-				<c:forEach items="${list}" var="vo">
+				<c:forEach items="${list}" var="vo" varStatus="i">
 					<tr>
-						<td>${vo.id}</td>
+						<td id="id${i.index}">${vo.id}</td>
 						<td>${vo.name}</td>
 						<td>${vo.phone}</td>
 						<td>${vo.email}</td>
+						<td><input type="checkbox" name="del" class="ch" title="id${i.index}" id="${vo.id}"></td>
 					</tr>
 				</c:forEach>
 				
@@ -72,7 +135,32 @@
 			</div>
 			
 		</div>
+		
+		</div>
 	</div>
+	
+	<!-- <script type="text/javascript">
+		$("#chAll").click(function() {
+			for(i=0; i<$(".ch").length; i++){
+				$(".ch")[i].checked = chAll.checked;
+			}
+		});
+		
+		for(i=0; i<$(".ch").length; i++){
+			$(".ch").click(function() {
+				var result = true;
+				
+				for(j=0; j<$(".ch").length; j++){
+					if(!$(".ch")[j].checked){
+						result = false;
+						break;
+					}	
+				}
+				$("#chAll").check = result;
+			});
+		}
+		
+	</script> -->
 
 </body>
 </html>
