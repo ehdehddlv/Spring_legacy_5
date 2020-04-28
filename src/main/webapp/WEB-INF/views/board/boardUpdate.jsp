@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +17,9 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
-	<h1>${board} Update</h1>
+	<h1>${fn:toUpperCase(board)} Update Form</h1>
 	<div class="row">
-	<form action="./${board}Update" method="post">
+	<form action="./${board}Update" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" name="num" value="${vo.num}">
 	
@@ -37,15 +38,25 @@
       <textarea rows="5" cols="" class="form-control" id="contents" name="contents">${vo.contents}</textarea>
     </div> 
     
-    <div class="form-group">
-    	<label for="files">Files:</label>
-    	<c:forEach items="${vo.boardFileVOs}" var="fileVO">
-    		<p>${fileVO.oriName}<i id="${fileVO.fileNum}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+     
     	
-    	</c:forEach>
-    	
-    </div>
-       
+	    <div class="form-group">
+	    	<label for="files">Files:</label>
+	     
+			<input type="button" id="add" class="btn btn-info" value="Add File">
+			
+	    	<c:forEach items="${vo.boardFileVOs}" var="fileVO">
+	    		<p>${fileVO.oriName}<i id="${fileVO.fileNum}" title="${fileVO.board}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
+	    	
+	    	</c:forEach>
+	    	
+	    </div>		
+				
+	<div id="file">	
+			
+	</div>
+    
+  
    
     <button type="submit" id="btn" class="btn btn-default">Update</button>
     
@@ -54,23 +65,37 @@
 </div>
 
 
+<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 <script type="text/javascript">
 	$("#contents").summernote({
 		height : 400
 	});
 	
+	//첨부파일 개수
+	//var size = ${size};
+	size = ${vo.boardFileVOs.size()};
+	 
+	size = ${fn:length(vo.boardFileVOs)};
+	
+	count = count+size;
+	
 	$(".fileDelete").click(function() {
 		
+		var check = confirm("정말 지우시겠습니까?");
+		
+		if(check){
 		var s = $(this);
 		
-		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id")}, function(data) {
+		$.post("../boardFile/fileDelete", {fileNum:$(this).attr("id"), board:$(this).attr("title")}, function(data) {
 			
 			if(data.trim()>0){
-				s.parent().remove(); 
+				s.parent().remove();
+				count--;
 			}else {
 				alert("File Delete Fail");
 			}
 		});
+		}
 	});
 </script>
 

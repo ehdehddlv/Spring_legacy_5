@@ -3,9 +3,15 @@
  */
 
 // $("선택자").action();
-		$("#contents").summernote({
-			height : 400
-		});
+
+//		$("#contents").summernote({
+//			height : 400,
+//			callbacks:{
+//				onImageUpload:function(file){
+//					console.log("upload");
+//				}
+//			}
+//		});
 		
 		$("#btn").click(function() {
 			//title, contents 데이터 유무 검증
@@ -42,6 +48,7 @@
 		});
 		
 		var count = 1;
+		
 		
 		$("#file").on("click", ".remove", function() {
 			$(this).parent().remove();
