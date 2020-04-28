@@ -55,7 +55,7 @@
 	<div id="file">	
 			
 	</div>
-    
+     
   
    
     <button type="submit" id="btn" class="btn btn-default">Update</button>
@@ -77,7 +77,7 @@
 	 
 	size = ${fn:length(vo.boardFileVOs)};
 	
-	count = count+size;
+	//count = count+size;
 	
 	$(".fileDelete").click(function() {
 		
