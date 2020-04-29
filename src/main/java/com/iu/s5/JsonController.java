@@ -1,0 +1,44 @@
+package com.iu.s5;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.s5.board.BoardVO;
+import com.iu.s5.notice.NoticeService;
+import com.iu.s5.util.Pager;
+
+//모든 메서드에 responsebody가 들어감
+@RestController
+@RequestMapping("json")
+public class JsonController {
+	
+	@Autowired
+	private NoticeService noticeService;
+
+	@GetMapping("json1")
+	public List<BoardVO> json1(Pager pager) throws Exception{
+		//ModelAndView mv = new ModelAndView();
+		BoardVO boardVO = noticeService.boardSelect(30);
+		
+		List<BoardVO> ar = noticeService.boardList(pager);
+		
+		//예전 방식
+//		String json = "{";
+//		json = json+"\"num\":\""+boardVO.getNum()+"\",";
+//		json = json+"\"title\":\""+boardVO.getTitle()+"\"}";
+		
+//		mv.addObject("result", "{\"name\":\"iu\"}");
+//		mv.addObject("result", json);
+//		mv.setViewName("common/ajaxResult");
+		
+		return ar;
+	}
+	
+}
