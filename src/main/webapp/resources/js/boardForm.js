@@ -12,6 +12,52 @@
 //				}
 //			}
 //		});
+
+	
+		$("#contents").summernote({
+			height : 400,
+			callbacks:{
+				onImageUpload:function(files, editor){
+					var formData = new FormData();	//<form></form>과 같음
+					formData.append('files', files[0]);	//<input type="file" name="(files)여러개여서 배열씀">
+					
+					$.ajax({
+						type:"POST",
+						url:"../boardFile/fileInsert",
+						data:formData,
+						enctype:"multipart/form-data",
+						cache:false,
+						contentType:false,
+						processData:false,
+						success:function(imageName){
+							imageName=imageName.trim();
+							$("#contents").summernote('editor.insertImage', imageName);
+						}
+					});
+				},//end onImageUpload
+				
+				onMediaDelete:function(files){
+					
+					var fileName = $(files[0]).attr("src");
+					fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+					console.log(fileName);
+					$.ajax({
+						type:"POST",
+						url:"../boardFile/summerDelete",
+						data:{
+							fileName:fileName
+						},
+						success:function(data){
+							console.log(data);
+						}
+					});
+				}//end onMediaDelete
+				
+			}//end callBack
+		});
+
+
+
 		
 		$("#btn").click(function() {
 			//title, contents 데이터 유무 검증
