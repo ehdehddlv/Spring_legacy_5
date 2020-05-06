@@ -109,19 +109,19 @@ public class QnaController {
 	}
 	  
 	 @RequestMapping(value = "qnaUpdate", method = RequestMethod.POST) 
-	 public ModelAndView boardUpdate(BoardVO boardVO, MultipartFile [] files) throws Exception{ 
-		 ModelAndView mv = new ModelAndView();
+	 public String boardUpdate(BoardVO boardVO, MultipartFile [] files) throws Exception{ 
+		 //ModelAndView mv = new ModelAndView();
 		 
 		 
 		 int result = qnaService.boardUpdate(boardVO, files);
 	 
-		 String path = ""; 
+		 String path = "";
 		 if(result > 0) { 
 			path = "redirect:./qnaList"; 
 		}else { 
 			path = "redirect:./qnaSelect"; }
 	  
-		 return mv; 
+		 return path; 
 	}
 	  
 	 
