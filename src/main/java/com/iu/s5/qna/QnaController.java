@@ -99,41 +99,46 @@ public class QnaController {
 		return mv;
 	}
 	 
-//	 @RequestMapping(value = "qnaUpdate", method = RequestMethod.GET) 
-//	 public String boardUpdate(long num, Model model) throws Exception{
-//		 BoardVO boardVO = qnaService.boardSelect(num);
-//		 model.addAttribute("qvo", boardVO); 
-//		 return "qna/boardQUpdate"; 
-//	}
+	 @RequestMapping(value = "qnaUpdate", method = RequestMethod.GET) 
+	 public ModelAndView boardUpdate(long num) throws Exception{
+		 ModelAndView mv = new ModelAndView();
+		 BoardVO boardVO = qnaService.boardSelect(num);	
+		 mv.addObject("vo", boardVO);
+		 mv.setViewName("board/boardUpdate");
+		 return mv;
+	}
 	  
-//	 @RequestMapping(value = "qnaUpdate", method = RequestMethod.POST) 
-//	 public String boardUpdate(QnaVO qnaVO) throws Exception{ 
-//		 int result = qnaService.boardUpdate(qnaVO);
-//	 
-//		 String path = ""; 
-//		 if(result > 0) { 
-//			path = "redirect:./qnaList"; 
-//		}else { 
-//			path = "redirect:./qnaSelect"; }
-//	  
-//		 return path; 
-//	}
+	 @RequestMapping(value = "qnaUpdate", method = RequestMethod.POST) 
+	 public ModelAndView boardUpdate(BoardVO boardVO, MultipartFile [] files) throws Exception{ 
+		 ModelAndView mv = new ModelAndView();
+		 
+		 
+		 int result = qnaService.boardUpdate(boardVO, files);
+	 
+		 String path = ""; 
+		 if(result > 0) { 
+			path = "redirect:./qnaList"; 
+		}else { 
+			path = "redirect:./qnaSelect"; }
+	  
+		 return mv; 
+	}
 	  
 	 
-//	 @RequestMapping(value = "qnaDelete", method = RequestMethod.GET) 
-//	 public ModelAndView boardDelete(long num, ModelAndView mv) throws Exception{ 
-//		 int result = qnaService.boardDelete(num);
-//	 
-//		 if(result > 0) { 
-//			 mv.addObject("result", "Delete Success"); 
-//		 }else {
-//			 mv.addObject("result", "Delete Fail"); 
-//		 } 
-//		 mv.addObject("path", "./qnaList");
-//		 mv.setViewName("common/result");
-//	  
-//		 return mv; 
-//	}
+	 @RequestMapping(value = "qnaDelete", method = RequestMethod.GET) 
+	 public ModelAndView boardDelete(long num, ModelAndView mv) throws Exception{ 
+		 int result = qnaService.boardDelete(num);
+	 
+		 if(result > 0) { 
+			 mv.addObject("result", "Delete Success"); 
+		 }else {
+			 mv.addObject("result", "Delete Fail"); 
+		 } 
+		 mv.addObject("path", "./qnaList");
+		 mv.setViewName("common/result");
+	  
+		 return mv; 
+	}
 	
 	
 }//end

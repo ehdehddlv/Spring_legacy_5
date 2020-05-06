@@ -83,17 +83,19 @@
 
 	<!-- qna -->
 	
-	<!-- 
 	
-	<update id="qnaUpdate" parameterType="com.iu.s5.qna.QnaVO">
+	<update id="qnaUpdate" parameterType="QnaVO">
 		update qna set title=#{title}, writer=#{writer}, contents=#{contents} where num = #{num}
 	</update>
+	
+	<!-- 
+	
 	
 	<delete id="qnaDelete" parameterType="Long">
 		delete qna where num = #{num}
 	</delete>
 	
-	 -->
+	-->
 	
 	<!-- qna -->
 

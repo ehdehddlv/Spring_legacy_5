@@ -44,12 +44,12 @@
 	    	<label for="files">Files:</label>
 	     
 			<input type="button" id="add" class="btn btn-info" value="Add File">
-			
+			<c:catch>
 	    	<c:forEach items="${vo.boardFileVOs}" var="fileVO">
 	    		<p>${fileVO.oriName}<i id="${fileVO.fileNum}" title="${fileVO.board}" class="glyphicon glyphicon-remove remove fileDelete"></i></p>
 	    	
 	    	</c:forEach>
-	    	
+	    	</c:catch>
 	    </div>		
 				
 	<div id="file">	
